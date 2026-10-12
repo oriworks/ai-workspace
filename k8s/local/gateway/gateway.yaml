@@ -1,0 +1,28 @@
+# As portas dos listeners correspondem às portas internas dos entrypoints do Traefik
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: oriworks
+  namespace: gateway
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 8000
+      hostname: "*.oriworks.local"
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: https
+      protocol: HTTPS
+      port: 8443
+      hostname: "*.oriworks.local"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: oriworks-local-tls
+      allowedRoutes:
+        namespaces:
+          from: All

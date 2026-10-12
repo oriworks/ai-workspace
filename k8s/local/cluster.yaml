@@ -1,0 +1,47 @@
+# Renderizado com envsubst por setup/cluster/up.sh
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+
+metadata:
+  name: ${CLUSTER_NAME}
+
+servers: ${CLUSTER_SERVERS}
+agents: ${CLUSTER_AGENTS}
+
+ports:
+  - port: 80:80
+    nodeFilters:
+      - loadbalancer
+  - port: 443:443
+    nodeFilters:
+      - loadbalancer
+  - port: 8000:8000
+    nodeFilters:
+      - loadbalancer
+  - port: 3306:3306
+    nodeFilters:
+      - loadbalancer
+
+volumes:
+  - volume: ${STORAGE_DIR}:/var/lib/rancher/k3s/storage
+    nodeFilters:
+      - server:0
+
+registries:
+  use:
+    - ${REGISTRY_CONTAINER}:${REGISTRY_PORT}
+  config: |
+    mirrors:
+      "${REGISTRY_NAME}:${REGISTRY_PORT}":
+        endpoint:
+          - http://${REGISTRY_CONTAINER}:${REGISTRY_PORT}
+options:
+  k3s:
+    extraArgs:
+      # Traefik é instalado via Helm (k8s/local/traefik/values.yaml)
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

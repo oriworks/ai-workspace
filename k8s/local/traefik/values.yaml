@@ -1,0 +1,42 @@
+providers:
+  kubernetesCRD:
+    enabled: true
+  kubernetesIngress:
+    enabled: true
+  kubernetesGateway:
+    enabled: true
+    # TCPRoute (dolt) e TLSRoute
+    experimentalChannel: true
+    # Permite HTTPRoutes neste namespace apontarem para api@internal (dashboard)
+    crossProviderNamespaces:
+      - traefik
+
+# O Gateway é definido em k8s/local/gateway
+gateway:
+  enabled: false
+gatewayClass:
+  enabled: true
+  name: traefik
+
+api:
+  dashboard: true
+
+ports:
+  web:
+    port: 8000
+    exposedPort: 80
+  websecure:
+    port: 8443
+    exposedPort: 443
+  mysql:
+    port: 3306
+    exposedPort: 3306
+    protocol: TCP
+    expose:
+      default: true
+
+service:
+  type: LoadBalancer
+
+accessLog:
+  enabled: true
