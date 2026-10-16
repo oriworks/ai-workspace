@@ -153,5 +153,4 @@ k8s/local/.rendered/
 k8s/local/storage/
 k8s/local/plugins/
 k8s/local/traefik/certs/
-
-.old
+k8s/local/dolt/.credentials

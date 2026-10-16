@@ -1,0 +1,11 @@
+# Executado uma única vez pelo entrypoint da imagem, após criar DOLT_USER.
+# O bd init cria o próprio database, então o usuário precisa de acesso global.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dolt-initdb
+  namespace: dolt
+data:
+  grants.sh: |
+    exec_mysql "Failed to grant global privileges to '${DOLT_USER}': " \
+      "GRANT ALL ON *.* TO '${DOLT_USER}'@'${DOLT_USER_HOST}';"

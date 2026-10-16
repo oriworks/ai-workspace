@@ -1,0 +1,54 @@
+# Renderizado com envsubst por scripts/cluster_start.sh
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dolt
+  namespace: dolt
+spec:
+  serviceName: dolt
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dolt
+  template:
+    metadata:
+      labels:
+        app: dolt
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
+      containers:
+        - name: dolt
+          image: dolthub/dolt-sql-server:${DOLT_VERSION}
+          ports:
+            - name: mysql
+              containerPort: 3306
+          env:
+            - name: DOLT_ROOT_HOST
+              value: localhost
+            - name: DOLT_USER_HOST
+              value: "%"
+          envFrom:
+            - secretRef:
+                name: dolt-credentials
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/dolt
+            - name: initdb
+              mountPath: /docker-entrypoint-initdb.d
+          readinessProbe:
+            tcpSocket:
+              port: mysql
+            periodSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: mysql
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: dolt-data
+        - name: initdb
+          configMap:
+            name: dolt-initdb

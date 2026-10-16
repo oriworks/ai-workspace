@@ -1,0 +1,14 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: TCPRoute
+metadata:
+  name: dolt
+  namespace: dolt
+spec:
+  parentRefs:
+    - name: oriworks
+      namespace: gateway
+      sectionName: mysql
+  rules:
+    - backendRefs:
+        - name: dolt
+          port: 3306

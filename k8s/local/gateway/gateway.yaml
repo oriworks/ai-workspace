@@ -22,7 +22,15 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: oriworks-local-tls
+            name: oriworks-local-cert
       allowedRoutes:
         namespaces:
           from: All
+    - name: mysql
+      protocol: TCP
+      port: 3306
+      allowedRoutes:
+        namespaces:
+          from: All
+        kinds:
+          - kind: TCPRoute

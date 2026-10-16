@@ -1,0 +1,41 @@
+# PV estático em caminho fixo do server-0, onde k8s/local/storage está montado:
+# os dados sobrevivem à recriação do cluster (o local-path dinâmico usaria um diretório novo)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dolt-data
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  claimRef:
+    namespace: dolt
+    name: dolt-data
+  hostPath:
+    path: /var/lib/rancher/k3s/storage/dolt
+    type: DirectoryOrCreate
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: node-role.kubernetes.io/control-plane
+              operator: In
+              values:
+                - "true"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dolt-data
+  namespace: dolt
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeName: dolt-data
+  resources:
+    requests:
+      storage: 5Gi
