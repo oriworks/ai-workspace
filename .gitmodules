@@ -1,0 +1,3 @@
+[submodule "projects/kanban"]
+	path = projects/kanban
+	url = git@github.com:oriworks/ai-board.git
