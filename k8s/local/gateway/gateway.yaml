@@ -1,3 +1,4 @@
+# Renderizado com envsubst por scripts/cluster_start.sh
 # As portas dos listeners correspondem às portas internas dos entrypoints do Traefik
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -10,19 +11,19 @@ spec:
     - name: http
       protocol: HTTP
       port: 8000
-      hostname: "*.oriworks.local"
+      hostname: "*.${DOMAIN}"
       allowedRoutes:
         namespaces:
           from: Same
     - name: https
       protocol: HTTPS
       port: 8443
-      hostname: "*.oriworks.local"
+      hostname: "*.${DOMAIN}"
       tls:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: oriworks-local-cert
+            name: ${TLS_SECRET}
       allowedRoutes:
         namespaces:
           from: All

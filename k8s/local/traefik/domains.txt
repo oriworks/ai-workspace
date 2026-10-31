@@ -1,2 +1,0 @@
-oriworks.local
-*.oriworks.local

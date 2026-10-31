@@ -1,3 +1,4 @@
+# Renderizado com envsubst por scripts/cluster_start.sh
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -9,7 +10,7 @@ spec:
       namespace: gateway
       sectionName: https
   hostnames:
-    - traefik.oriworks.local
+    - traefik.${DOMAIN}
   rules:
     - matches:
         - path:
@@ -18,6 +19,12 @@ spec:
         - path:
             type: PathPrefix
             value: /api
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: dashboard-auth
       backendRefs:
         - group: traefik.io
           kind: TraefikService

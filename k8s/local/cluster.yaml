@@ -15,10 +15,8 @@ ports:
   - port: 443:443
     nodeFilters:
       - loadbalancer
-  - port: 8000:8000
-    nodeFilters:
-      - loadbalancer
-  - port: 3306:3306
+  # Só local: com IP público, apenas 80/443 ficam expostos
+  - port: 127.0.0.1:3306:3306
     nodeFilters:
       - loadbalancer
 

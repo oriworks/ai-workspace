@@ -152,5 +152,6 @@ vite.config.ts.timestamp-*
 k8s/local/.rendered/
 k8s/local/storage/
 k8s/local/plugins/
-k8s/local/traefik/certs/
+k8s/local/traefik/.dashboard-credentials
+k8s/local/cert-manager/.cloudflare-token
 k8s/local/dolt/.credentials

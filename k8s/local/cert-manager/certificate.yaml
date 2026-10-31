@@ -1,0 +1,13 @@
+# Renderizado com envsubst por scripts/cluster_start.sh
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ${TLS_SECRET}
+  namespace: gateway
+spec:
+  secretName: ${TLS_SECRET}
+  dnsNames:
+    - "*.${DOMAIN}"
+  issuerRef:
+    kind: ClusterIssuer
+    name: ${ACME_ISSUER}

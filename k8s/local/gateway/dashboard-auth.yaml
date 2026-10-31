@@ -1,0 +1,9 @@
+# Credenciais geradas por scripts/cluster_start.sh (k8s/local/traefik/.dashboard-credentials)
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: dashboard-auth
+  namespace: traefik
+spec:
+  basicAuth:
+    secret: traefik-dashboard-auth

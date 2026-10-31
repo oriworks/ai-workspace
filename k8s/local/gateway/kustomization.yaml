@@ -4,4 +4,5 @@ resources:
   - namespace.yaml
   - gateway.yaml
   - redirect.yaml
+  - dashboard-auth.yaml
   - dashboard.yaml

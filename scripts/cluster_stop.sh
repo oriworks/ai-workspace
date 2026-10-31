@@ -5,7 +5,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 . "$CURRENT_DIR/utils/common.sh"
 
-require k3d
+require docker k3d
 
 
 step "Cluster ${CLUSTER_NAME}"
@@ -15,5 +15,9 @@ k3d cluster delete "$CLUSTER_NAME"
 if [ "${1:-}" = "--all" ]; then
     step "Registry ${REGISTRY_NAME}:${REGISTRY_PORT}"
     
-    k3d registry delete "${REGISTRY_CONTAINER}"
+    if docker container inspect "$REGISTRY_CONTAINER" > /dev/null 2>&1; then
+        k3d registry delete "${REGISTRY_CONTAINER}"
+    else
+        echo "Registry $REGISTRY_CONTAINER does not exist, nothing to delete."
+    fi
 fi
