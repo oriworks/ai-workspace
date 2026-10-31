@@ -1,3 +1,6 @@
 [submodule "projects/kanban"]
 	path = projects/kanban
 	url = git@github.com:oriworks/ai-board.git
+[submodule "projects/workdays"]
+	path = projects/workdays
+	url = git@github.com:oriworks/workdays.git
