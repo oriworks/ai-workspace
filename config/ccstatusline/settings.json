@@ -1,0 +1,126 @@
+{
+  "version": 4,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "cyan"
+      },
+      {
+        "id": "4",
+        "type": "separator"
+      },
+      {
+        "id": "2",
+        "type": "thinking-effort"
+      },
+      {
+        "id": "8be12a6a-ffcc-4c88-8363-10c91c4637bb",
+        "type": "separator"
+      },
+      {
+        "id": "3",
+        "type": "context-bar",
+        "color": "brightBlack"
+      },
+      {
+        "id": "25596017-98e8-4c49-abb6-05dbda342fc3",
+        "type": "separator"
+      },
+      {
+        "id": "5",
+        "type": "git-branch",
+        "color": "magenta"
+      },
+      {
+        "id": "6",
+        "type": "separator"
+      },
+      {
+        "id": "7",
+        "type": "git-changes",
+        "color": "yellow"
+      }
+    ],
+    [
+      {
+        "id": "938f8356-6f54-42c1-b21c-81423296caaa",
+        "type": "session-name"
+      },
+      {
+        "id": "61de7a89-05bc-4208-be51-5cb05d4d9f06",
+        "type": "separator"
+      },
+      {
+        "id": "ed448d25-e12f-4010-8d71-e26a54873817",
+        "type": "session-cost"
+      },
+      {
+        "id": "179eedd0-b19a-47b2-9ad6-404b1b6f5785",
+        "type": "separator"
+      },
+      {
+        "id": "7ac38a45-c3a0-41ed-b9dc-db10d59075d9",
+        "type": "session-usage"
+      },
+      {
+        "id": "bfe92bd7-ee35-4e8f-8833-9c188f26e0a4",
+        "type": "separator"
+      },
+      {
+        "id": "a9155b6b-60f2-44f0-b621-5a7edbf18069",
+        "type": "reset-timer"
+      },
+      {
+        "id": "3ead3cd8-3464-4515-ab24-2fe4eb5df919",
+        "type": "separator"
+      },
+      {
+        "id": "e5d27966-9a4c-45d9-a7b5-4ad9e541382a",
+        "type": "weekly-usage"
+      },
+      {
+        "id": "6a04ff37-f646-4701-ad4b-ea1eea12d899",
+        "type": "separator"
+      },
+      {
+        "id": "787f0710-e6c2-4f78-ad46-13442b4137db",
+        "type": "weekly-reset-timer"
+      }
+    ],
+    [
+      {
+        "id": "a5681b47-39b6-4c92-bf90-e5f92ea9f382",
+        "type": "claude-account-email"
+      }
+    ]
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPaddingSide": "both",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "terminalWidthCacheTtlSeconds": 5,
+  "customCommandCacheTtlSeconds": 0,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  },
+  "installation": {
+    "method": "pinned",
+    "installedVersion": "2.2.33"
+  }
+}
